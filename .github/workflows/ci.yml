@@ -56,9 +56,11 @@ jobs:
           haxelib --quiet install flixel-tools
           haxelib --quiet install hscript
           haxelib --quiet install newgrounds
+          haxelib git faxe https://github.com/uhrobots/faxe
           haxelib --quiet git polymod https://github.com/larsiusprime/polymod
-          haxelib --quiet git linc_luajit https://github.com/AndreiRudenko/linc_luajit
+          haxelib --quiet install linc_luajit
           haxelib --quiet git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+          haxelib list
       - name: Setup Lime
         run: haxelib --quiet run lime setup
       - name: Install wget
@@ -66,9 +68,6 @@ jobs:
         run: choco install wget -y
       - name: Superlinter
         run: haxelib install hxnodejs
-      - name: Download APIStuff
-        working-directory: ./source
-        run: wget https://raw.githubusercontent.com/regulad/Funkin/APIStuff/APIStuff.hx
       - name: Build using Lime
         run: haxelib run lime build ${{ matrix.platform }} -${{ matrix.build_type }}
       - name: Upload Artifact
